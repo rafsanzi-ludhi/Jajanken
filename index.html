@@ -6,16 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jajanken</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="Undertale_Stylesheet/undertale.css">
 </head>
 
 
 <body>
+
     <div class="container">
-        <div class="player">
-            <img src="img/rock.png" alt="" id="rock">
-            <img src="img/paper.png" alt="" id="paper">
-            <img src="img/scissors.png" alt="" id="scissors">
+        <div class="asgore">
+            <img src="img/asgore-cropped.png" id="asgore" alt="">
         </div>
+
+        <div class="dialogue-container">
+            <div>
+                <p class="ut-dialogue">*</p>
+            </div>
+            <div class="winner-text">
+                <p class="ut-dialogue"></p>
+            </div>
+        </div>
+
+        <div class="health">  
+            <div class="hp-text ut-menu">HP</div>
+            <div class="health-bar"></div>
+            <div class="life-number ut-stats"> 20 / 20</div>
+        </div>
+
+        <div class="player-selection">
+            <p class="ut-button ut-link" id="rock" href="#">ROCK</p>
+            <p class="ut-button ut-link" id="paper" href="#">PAPER</p>
+            <p class="ut-button ut-link" id="scissors" href="#">KNIFE</p>
+            <!-- <p><a class="ut-button ut-link invisible" href="#">KNIFE</a></p> -->
+
+        </div>
+
+        
         
         <div class="result">
             <div class="player-score">
@@ -30,6 +55,7 @@
             </div>
 
         </div>
+
     </div>
     
 

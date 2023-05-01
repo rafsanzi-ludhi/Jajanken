@@ -1,24 +1,102 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #f0f0f0;
+    background-color: #000000;
+    padding: 0px;
+    margin: 0px;
+    color: white;
 }
 
 .container {
-    margin: 50px auto;
+    margin: 5px auto;
     max-width: 500px;
 }
 
-.player img {
-    width: 100px;
-    height: 100px;
+#asgore {
+    max-width: 80%;
+    /* border: solid 2px white; */
+}
+
+.dialogue-container {
+    margin: 1px auto;
+    max-width: 500px;
+    border: white solid 5px;
+    color: white;
+    height: auto;
+    max-height: 300px;
+    min-height: 120px;
+    /* Set a maximum height */
+    overflow-y: auto;
+    /* Make the content scrollable if it exceeds the maximum height */
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.dialogue {
+    margin: 0px;
+    padding: 10px;
+    font-size: 15px;
+    color: white;
+    border: solid 2px red;
+}
+
+.dialogue-container p {
     margin: 10px;
-    cursor: pointer;
+    border: 2px solid grey;
+}
+
+.health {
+    width: 100%;
+    height: 20px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    border: solid 1px blue;
+}
+
+.hp-text{
+    margin-right: 3px;
+    margin-top: 1.5px;
+}
+
+.health-bar {
+    background-color: #F7FF00;
+    width: 15px;
+    height: 15px;
+    margin-top: 2px;
+    margin-right: 5px;
+}
+
+.life-number {
+    margin-top: 3px
+}
+
+.player-selection {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* border: 2px solid yellowgreen; */
+    align-items: center;
+    justify-content: space-around;
+    height: 30px;
+    /* Set a specific height for the container */
+}
+
+.invisible {
+    display: none;
+}
+
+#rock, #paper, #scissors {
+    /* border: 2px solid orange; */
+    padding: 1px;
 }
 
 .result {
     display: flex;
+    margin: 5px;
     justify-content: space-around;
+    color: #000000;
 }
 
 .player-score,
