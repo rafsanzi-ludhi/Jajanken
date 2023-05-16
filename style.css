@@ -12,6 +12,91 @@ body {
     max-width: 500px;
 }
 
+/* start screen dialogue */
+#desc1.fade-out,
+#desc2.fade-out,
+#desc3.fade-out,
+.fade-out {
+    animation-name: fade-out;
+    animation-duration: 800ms;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+span {
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+.fade {
+    opacity: 1;
+}
+
+.disappear {
+    display: none; 
+}
+
+.desc {
+    text-align: left;
+    /* Add any other styles you want for the paragraphs */
+}
+
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    to {
+        opacity: 1;
+        pointer-events: all;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+    
+    to {
+        opacity: 0;
+    }
+}
+
+/* start screen end */
+
+/*! Sprite slides in for now its Asgore */
+#cta {
+    opacity: 0;
+    margin: 20px 0 0px 0;
+    font-size: 40px;
+    transform: translateX(-150px);
+}
+
+#cta.drop-down {
+    animation-name: drop-down;
+    animation-duration: 1100ms;
+    animation-timing-function: cubic-bezier(0.58, 0.3, 0.49, 1.39);
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes drop-down {
+    from {
+        opacity: 0;
+        transform: translateX(-550px);
+        pointer-events: none;
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(10px);
+        pointer-events: all;
+    }
+}
+
 #asgore {
     max-width: 80%;
     /* border: solid 2px white; */
@@ -52,7 +137,7 @@ body {
     margin: 5px;
     display: flex;
     justify-content: center;
-    border: solid 1px blue;
+    /* border: solid 1px blue; */
 }
 
 .hp-text{
@@ -109,4 +194,363 @@ body {
 
 h2 {
     margin-bottom: 5px;
+}
+
+
+
+/* ! END GAME MODAL */
+#end-alert {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#end-alert.disappear,
+.disappear {
+    display: none;
+    /* hide the element */
+}
+
+#end-desc {
+    font-size: 50px;
+    margin-bottom: 25px;
+}
+
+#retry-btn {
+    display: inline-block;
+    padding: 0.8em 1.4em;
+    border-radius: 0.15em;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: #646464;
+    background-color: rgb(245, 245, 245);
+    box-shadow: inset 0 -0.6em 0 -0.35em rgba(0, 0, 0, 0.17);
+    position: relative;
+    margin-top: 25px;
+    opacity: 0;
+}
+
+#retry-btn:hover {
+    cursor: pointer;
+    filter: brightness(1.1);
+    transform: scale(1.05);
+}
+
+
+/* !Sprite */
+:root {
+    --pixel-size: 4;
+}
+
+ .character {
+    /* background: red; */
+    width: calc(25px * var(--pixel-size));
+    height: calc(24px * var(--pixel-size));
+    overflow: hidden;
+} 
+
+.character_spritesheet {
+    animation: moveSpritesheet 0.3s steps(2) infinite;
+    width: calc(204px * var(--pixel-size));
+    /*used image-rendering to make the undyne dialogue sprite appear more clear and crisp as the pixelart style was not working*/
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+}
+
+.pixelart {
+    image-rendering: pixelated;
+}
+
+@keyframes moveSpritesheet {
+    from {
+        transform: translate3d(-2.5px, 0, 0);
+    }
+    to {
+        transform: translate3d(-25%, 0, 0);
+    }
+}
+
+.stop-animation {
+    animation-play-state: paused;
+}
+
+/* ! Dailogue speech box */
+[speech-bubble],
+[speech-bubble] * {
+    box-sizing: border-box
+}
+
+[speech-bubble] {
+    --bbColor: grey;
+    --bbArrowSize: 1.5rem;
+    --bbBorderRadius: 0.25rem;
+    --bbPadding: 1rem;
+    background: var(--bbColor);
+    border-radius: var(--bbBorderRadius);
+    padding: var(--bbPadding);
+    position: relative;
+}
+
+[speech-bubble]::before {
+    content: '';
+    position: absolute;
+    background: var(--bbColor);
+}
+
+[speech-bubble][pbottom] {
+    margin-bottom: var(--bbArrowSize)
+}
+
+[speech-bubble][ptop] {
+    margin-top: var(--bbArrowSize);
+}
+
+[speech-bubble][pleft] {
+    margin-left: var(--bbArrowSize);
+}
+
+[speech-bubble][pright] {
+    margin-right: var(--bbArrowSize);
+}
+
+
+/* bottom and top  */
+[speech-bubble][pbottom]::before,
+[speech-bubble][ptop]::before {
+    --width: calc(var(--bbArrowSize) / 2 * 3);
+    height: var(--bbArrowSize);
+    width: var(--width);
+}
+
+/* bottom */
+[speech-bubble][pbottom]::before {
+    top: calc(100% - 2px);
+}
+
+[speech-bubble][pbottom][aleft]::before {
+    left: 1rem;
+    clip-path: polygon(25% 0, 100% 0, 0% 100%)
+}
+
+[speech-bubble][pbottom][acenter]::before {
+    left: calc(50% - var(--width) / 2);
+    clip-path: polygon(12.5% 0, 87.5% 0, 50% 100%)
+}
+
+[speech-bubble][pbottom][aright]::before {
+    right: 1rem;
+    clip-path: polygon(0 0, 75% 0, 100% 100%)
+}
+
+/* top */
+[speech-bubble][ptop]::before {
+    bottom: calc(100% - 2px);
+}
+
+[speech-bubble][ptop][aleft]::before {
+    left: var(--bbPadding);
+    clip-path: polygon(0 0, 100% 100%, 25% 100%)
+}
+
+[speech-bubble][ptop][acenter]::before {
+    left: calc(50% - var(--width) / 2);
+    clip-path: polygon(12.5% 100%, 50% 0, 87.5% 100%)
+}
+
+[speech-bubble][ptop][aright]::before {
+    right: var(--bbPadding);
+    clip-path: polygon(0 100%, 100% 0, 75% 100%)
+}
+
+/* left and right  */
+[speech-bubble][pleft]::before,
+[speech-bubble][pright]::before {
+    --height: calc(var(--bbArrowSize) / 2 * 3);
+    width: var(--bbArrowSize);
+    height: var(--height);
+}
+
+/* right */
+[speech-bubble][pright]::before {
+    left: calc(100% - 2px);
+}
+
+[speech-bubble][pright][atop]::before {
+    top: var(--bbPadding);
+    clip-path: polygon(100% 0, 0 100%, 0 25%)
+}
+
+[speech-bubble][pright][acenter]::before {
+    top: calc(50% - var(--height) / 2);
+    clip-path: polygon(0 12.5%, 100% 50%, 0 87.5%)
+}
+
+[speech-bubble][pright][abottom]::before {
+    bottom: var(--bbPadding);
+    clip-path: polygon(0 0, 100% 100%, 0 75%)
+}
+
+/* left */
+[speech-bubble][pleft]::before {
+    right: calc(100% - 2px);
+}
+
+[speech-bubble][pleft][atop]::before {
+    top: var(--bbPadding);
+    clip-path: polygon(0 0, 100% 25%, 100% 100%)
+}
+
+[speech-bubble][pleft][acenter]::before {
+    top: calc(50% - var(--height) / 2);
+    clip-path: polygon(0 50%, 100% 12.5%, 100% 87.5%);
+}
+
+[speech-bubble][pleft][abottom]::before {
+    bottom: var(--bbPadding);
+    clip-path: polygon(0 100%, 100% 0, 100% 75%)
+}
+
+/* flip */
+[speech-bubble][pbottom][flip]::before,
+[speech-bubble][ptop][flip]::before {
+    transform: scaleX(-1)
+}
+
+[speech-bubble][pleft][flip]::before,
+[speech-bubble][pright][flip]::before {
+    transform: scaleY(-1)
+}
+
+
+
+
+
+/* for demo */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: default
+}
+
+body {
+    max-width: 60rem;
+    margin-inline: auto;
+    font-family: sans-serif;
+    display: grid;
+    grid-template-areas:
+        'br bc bl'
+        'rb cc lb'
+        'rc cc lc'
+        'rt cc lt'
+        'tr tc tl';
+    padding: 2rem;
+    gap: 2rem;
+    background: #141518;
+}
+
+.middle {
+    grid-area: cc;
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+    color: white;
+}
+
+[speech-bubble][pbottom][aleft] {
+    grid-area: bl
+}
+
+[speech-bubble][pbottom][acenter] {
+    grid-area: bc
+}
+
+[speech-bubble][pbottom][aright] {
+    grid-area: br
+}
+
+[speech-bubble][pright][atop] {
+    grid-area: rt
+}
+
+[speech-bubble][pright][acenter] {
+    grid-area: rc
+}
+
+[speech-bubble][pright][abottom] {
+    grid-area: rb
+}
+
+[speech-bubble][pleft][atop] {
+    grid-area: lt
+}
+
+[speech-bubble][pleft][acenter] {
+    grid-area: lc
+}
+
+[speech-bubble][pleft][abottom] {
+    grid-area: lb
+}
+
+[speech-bubble][ptop][aleft] {
+    grid-area: tl
+}
+
+[speech-bubble][ptop][acenter] {
+    grid-area: tc
+}
+
+[speech-bubble][ptop][aright] {
+    grid-area: tr
+}
+
+[speech-bubble][pbottom],
+[speech-bubble][ptop] {
+    margin: 0
+}
+
+[speech-bubble] {
+    filter: drop-shadow(0px 0px 0.2rem black);
+    transition: transform 0.25s ease
+}
+
+[speech-bubble]:hover {
+    transform: scale(1.05);
+    filter:
+        drop-shadow(0px 0px 0.2rem black) drop-shadow(0px 0px 1rem var(--bbColor));
+}
+
+[speech-bubble] .title {
+    font-weight: 600;
+    color: rgb(102, 45, 45);
+    text-shadow: 1px 1px 2px black;
+    margin-bottom: 0.5rem;
+    
+}
+
+[speech-bubble] code {
+    background: rgb(200, 54, 54);
+    margin: 0.125rem;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, .5);
+    white-space: nowrap;
+    font-size: .9rem
+}
+
+.middle code {
+    font-size: 1rem;
+}
+
+[speech-bubble] {
+    position: fixed;
+    /* Change this to fixed */
+    top: 30%;
+    /* Add this */
+    left: 100%;
+    /* Add this */
+    transform: translate(-50%, -50%);
+    /* Add this */
 }

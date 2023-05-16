@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jajanken</title>
+    <title>NO MERCY</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="Undertale_Stylesheet/undertale.css">
 </head>
@@ -12,27 +12,43 @@
 
 <body>
 
-    <div class="container">
-        <div class="asgore">
+    <main class="container">
+        <!-- <h1 id="title">No Mercy</h1> -->
+        <div class="asgore" id="cta">
             <img src="img/asgore-cropped.png" id="asgore" alt="">
-        </div>
 
+            <div speech-bubble pleft acenter style="--bbColor:#086899">
+                <div class="title">Left Center</div>
+                <code>[pleft]</code><code>[acenter]</code>
+            </div>
+        </div>
+        
         <div class="dialogue-container">
-            <div>
-                <p class="ut-dialogue">*</p>
+            <div class="character">
+                <img id="sprite" class="character_spritesheet" src= "img/undyne-sprite-removebg-preview.png" alt="Undyne">
             </div>
+            <p class="desc animate ut-dialogue" id="desc1">
+               * Hey human! 
+            </p>
+            <p class="desc disappear ut-dialogue" id="desc2">
+                * I chall
+            </p>
+            <p class="desc disappear ut-dialogue" id="desc3">
+                * Alphys 
+            </p>
+            
             <div class="winner-text">
-                <p class="ut-dialogue"></p>
+                <p class="ut-dialogue" id="dialogue-text"></p>
             </div>
         </div>
 
-        <div class="health">  
+        <div class="health" id="">  
             <div class="hp-text ut-menu">HP</div>
-            <div class="health-bar"></div>
+            <div class='health-bar'></div>
             <div class="life-number ut-stats"> 20 / 20</div>
         </div>
 
-        <div class="player-selection">
+        <div class="player-selection" id="">
             <p class="ut-button ut-link" id="rock" href="#">ROCK</p>
             <p class="ut-button ut-link" id="paper" href="#">PAPER</p>
             <p class="ut-button ut-link" id="scissors" href="#">KNIFE</p>
@@ -56,8 +72,16 @@
 
         </div>
 
-    </div>
+    </main>
+
     
+    <div id="end-alert" class="disappear">
+        <div id="end-desc"></div>
+        <a id="retry-btn"></a>
+    </div>
+
+
+
 
 </body>
 
