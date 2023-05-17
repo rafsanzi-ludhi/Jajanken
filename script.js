@@ -8,6 +8,11 @@ const playerScore = document.querySelector(".player-score p");
 const computerScore = document.querySelector(".computer-score p");
 const winnerText = document.querySelector(".winner-text p");
 const sprite = document.querySelector(".character");
+const speechBubbleText = document.getElementById("speech-bubble-text");
+
+
+let previousRoundWinner = '';
+
 
 //! begin initial dialogue
 
@@ -82,7 +87,7 @@ function fadeIn() {
   }
 
   let char = 0;
-  let timer = setInterval(onTick, 20);
+  let timer = setInterval(onTick, 1);
 
   function onTick() {
     const span = text.querySelectorAll("span")[char];
@@ -167,7 +172,7 @@ function typeWriter(element, text, delay = 50) {
 
 
 //! Display the result message
-function displayResultMessage(result, playerSelection, computerSelection) {
+function displayResultMessage(winner, playerSelection, computerSelection) {
   winnerText.textContent = ""; // Clear the current text
   let message;
   let delay = 100; // Add a delay before displaying the new message
@@ -181,9 +186,9 @@ function displayResultMessage(result, playerSelection, computerSelection) {
   // ${capitalize(computerSelection)} beats ${playerSelection}.`
   // ${capitalize(playerSelection)} beats ${computerSelection}.`
   
-    if (result === "player") {
+    if (winner === "player") {
       message = winMessage + ` ${capitalize(playerSelection)} beats ${computerSelection}.`;
-    } else if (result === "computer") {
+    } else if (winner === "computer") {
       message = loss[Math.floor(Math.random() * loss.length)];
     } else {
       message = draw[Math.floor(Math.random() * draw.length)];
@@ -206,6 +211,8 @@ function capitalize(str) {
 rock.addEventListener("click", function () {
   const computerSelection = computerPlay();
   const winner = playRound("rock", computerSelection);
+  updateSpeechBubble(winner);
+
   updateScore(winner);
   displayResultMessage(winner, "rock", computerSelection);
 });
@@ -213,6 +220,8 @@ rock.addEventListener("click", function () {
 paper.addEventListener("click", function () {
   const computerSelection = computerPlay();
   const winner = playRound("paper", computerSelection);
+  updateSpeechBubble(winner);
+
   updateScore(winner);
   displayResultMessage(winner, "paper", computerSelection);
 });
@@ -220,6 +229,8 @@ paper.addEventListener("click", function () {
 scissors.addEventListener("click", function () {
   const computerSelection = computerPlay();
   const winner = playRound("scissors", computerSelection);
+  updateSpeechBubble(winner);
+
   updateScore(winner);
   displayResultMessage(winner, "scissors", computerSelection);
 });
@@ -281,4 +292,24 @@ function stopSpriteAnimation() {
 }
 
 
+
+// ! Undyne speech bubble text
+// Update the updateSpeechBubble function
+
+function updateSpeechBubble(winner) {
+  if (winner === "computer" && previousRoundWinner !== "computer") {
+    speechBubbleText.textContent = "Yeah!!! YEAH!!! This game rules!!!";
+  } else if (winner === "player" && previousRoundWinner !== "player") {
+    speechBubbleText.textContent = "Urgh... I haven't lost yet human!!!";
+  } else if (parseInt(playerScore.textContent) === 3 && previousRoundWinner !== "playerAt4") {
+    speechBubbleText.textContent = "You're gonna lose!!!";
+    winner = "playerAt4";
+  } else if (parseInt(computerScore.textContent) === 3 && previousRoundWinner !== "computerAt4") { // If the computer is at 4 points and hasn't said this yet then say it 
+    speechBubbleText.textContent = "I'm gonna win!!!";
+    winner = "computerAt4";
+  } else if (winner === "draw") {
+    speechBubbleText.textContent = "It's a draw!!!";
+  }
+  previousRoundWinner = winner;
+}
 
